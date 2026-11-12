@@ -302,3 +302,4 @@ Delete task by ID.
    - `MONGODB_URI=mongodb+srv://<user>:<password>@cluster0.mongodb.net/todo-app?retryWrites=true&w=majority`
    - `CLIENT_URL=https://<your-netlify-app>.netlify.app`
    - `TIMEZONE=Asia/Kolkata`
+
