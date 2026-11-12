@@ -4,7 +4,11 @@ A mobile-first to-do app I built with the MERN stack. You can add tasks with a t
 
 The UI follows a Figma design I was given, so it's meant to be used on a phone-sized screen (it still works fine on desktop).
 
-Live demo: _add link after deploying_
+## Live Links
+
+- **Frontend App (Netlify):** [https://todo-app-ritik.netlify.app](https://todo-app-ritik.netlify.app)
+- **Backend API (Render):** [https://todo-lists-ex3d.onrender.com](https://todo-lists-ex3d.onrender.com)
+- **Health Check:** [https://todo-lists-ex3d.onrender.com/api/health](https://todo-lists-ex3d.onrender.com/api/health)
 
 ## What it does
 
@@ -136,17 +140,19 @@ Example request body for creating a task:
 ## Deploying
 
 **Frontend (Netlify)**
+- **Live URL:** [https://todo-app-ritik.netlify.app](https://todo-app-ritik.netlify.app)
 - Base directory: `client`
 - Build command: `npm run build`
 - Publish directory: `client/dist`
-- Set `VITE_API_URL` to your deployed API URL
+- Environment variable: `VITE_API_URL=https://todo-lists-ex3d.onrender.com/api`
 - `netlify.toml` already handles the SPA redirects
 
-**Backend (Render or Railway)**
+**Backend (Render)**
+- **Live URL:** [https://todo-lists-ex3d.onrender.com](https://todo-lists-ex3d.onrender.com)
 - Root directory: `server`
 - Build command: `npm install`
 - Start command: `npm start`
-- Set `NODE_ENV`, `MONGODB_URI`, `CLIENT_URL` and `TIMEZONE`
+- Environment variables: `NODE_ENV=production`, `MONGODB_URI`, `CLIENT_URL=https://todo-app-ritik.netlify.app`, `TIMEZONE=Asia/Kolkata`
 
 ## Things I'd improve next
 
