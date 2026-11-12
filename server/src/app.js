@@ -14,14 +14,39 @@ const app = express();
 app.use(helmet());
 
 // Cross-Origin Resource Sharing
-const clientUrl = process.env.CLIENT_URL;
+// const clientUrl = process.env.CLIENT_URL;
+// const corsOptions = {
+//   origin: clientUrl && clientUrl !== '*' ? clientUrl : '*',
+//   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+// };
+// app.use(cors(corsOptions));
+
+
+
+
+// Cross-Origin Resource Sharing
+const allowedOrigins = [
+  ...(process.env.CLIENT_URL || '').split(','),
+  'https://todo-app-ritik.netlify.app',
+  'http://localhost:5173',
+]
+  .map((origin) => origin.trim().replace(/\/$/, ''))
+  .filter(Boolean);
+
+const allowAll = allowedOrigins.includes('*');
+
 const corsOptions = {
-  origin: clientUrl && clientUrl !== '*' ? clientUrl : '*',
+  origin: (origin, callback) => {
+    if (!origin || allowAll || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(null, false);
+  },
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 app.use(cors(corsOptions));
-
 // HTTP Request logging
 if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
